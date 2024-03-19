@@ -1,0 +1,30 @@
+<h3>Listado de Héroes</h3>
+
+{{ print() }}
+
+<!-- De esta forma el ciclo de vida de angular esta pendiente a los cambios
+     en este caso a deletedHero que esta repetida dos veces
+ -->
+<!-- <h3 *ngIf="deletedHero !== undefined">
+  Héroe borrado <small class="text-danger">{{ deletedHero }}</small>
+</h3>
+<h3 *ngIf="deletedHero === undefined">No hay borrado nada</h3> -->
+
+<!-- segunda forma utilizando ng-template -->
+<div *ngIf="deletedHero !== undefined; else nothingWasDeleted">
+  <h3>
+    Héroe borrado <small class="text-danger">{{ deletedHero }}</small>
+  </h3>
+</div>
+
+<ng-template #nothingWasDeleted>
+  <h3>No hay borrado nada</h3>
+</ng-template>
+
+<button (click)="removeLastHero()" class="btn btn-outline-danger">
+  Borrar último héroe
+</button>
+
+<ul class="mt-2 list-group">
+  <li *ngFor="let hero of heroNames" class="list-group-item">{{ hero }}</li>
+</ul>
